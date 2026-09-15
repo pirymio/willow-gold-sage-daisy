@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "RT-LCA Dashboard",
+      "hasCanvas": false,
+      "bodyTextLen": 803,
+      "bodyTextHash": "2b33c1c96282b366e0e2b8fbf15892256f3dfd4d1e33e4c2386ef178212425bd",
+      "bodyTextPrefix": "RT-LCA / LCC process dashboard Real-time life cycle assessment &",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "RT-LCA Dashboard",
+      "hasCanvas": false,
+      "bodyTextLen": 803,
+      "bodyTextHash": "2b33c1c96282b366e0e2b8fbf15892256f3dfd4d1e33e4c2386ef178212425bd",
+      "bodyTextPrefix": "RT-LCA / LCC process dashboard Real-time life cycle assessment &",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [
+    "BRAND NOTE: no custom public/og.jpg — the platform will serve the og.grok.me placeholder. Custom cards are the default for games of every kind (DOM board/word games included), whimsical apps, creative tools, and brand-forward pages — only plain utilities (converters, CRUD trackers, admin dashboards) keep the placeholder. If this app is not a plain utility, finish the brand-asset pass per /workspace/.grok/skills/og/SKILL.md."
+  ],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

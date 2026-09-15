@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --color-bg: #eef1f4;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f6f8;
+  --color-header: #13283f;
+  --color-header-fg: #eef3f7;
+  --color-header-muted: #9bb0c4;
+  --color-fg: #15202b;
+  --color-muted: #5c6b7a;
+  --color-subtle: #8a97a6;
+  --color-border: #d3dbe3;
+  --color-primary: #1b5f8c;
+  --color-primary-fg: #f7fbfe;
+  --color-go: #157a4c;
+  --color-go-fg: #f4fbf7;
+  --color-stop: #c23d32;
+  --color-stop-fg: #fff7f6;
+  --color-warn: #9a5b12;
+  --color-dynamic: #8a4e2a;
+  --color-done: #dceee4;
+  --color-done-fg: #1a5c38;
+  --color-kpi-1: #0d6e6e;
+  --color-kpi-2: #185a9c;
+  --color-kpi-3: #3d4f63;
+  --color-kpi-4: #c23d32;
+  --color-kpi-5: #1a6b3c;
+  --color-chart-1: #1b5f8c;
+  --color-chart-2: #0d6e6e;
+  --color-chart-3: #c23d32;
+  --color-chart-4: #3d6b3a;
+  --color-chart-5: #4a5563;
+  --color-chart-6: #9a5b2d;
+  --color-chart-7: #16324f;
+  --color-chart-8: #2f6f4e;
+  --color-chart-9: #8c4a3a;
+  --color-chart-10: #2c3d4f;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-border:
+    0px 0px 0px 1px rgba(19, 40, 63, 0.08),
+    0px 1px 2px -1px rgba(19, 40, 63, 0.06),
+    0px 2px 6px 0px rgba(19, 40, 63, 0.04);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
