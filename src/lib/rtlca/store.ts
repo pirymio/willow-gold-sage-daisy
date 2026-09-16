@@ -13,12 +13,7 @@ import type {
   RTFile,
 } from "./types";
 import { COST_ITEMS } from "./types";
-import {
-  cedFactors,
-  makeDemoMix,
-  makeDemoPrices,
-  makeDemoRT,
-} from "./demo-data";
+import { cedFactors } from "./demo-data";
 import {
   finishResult,
   initRunner,
@@ -135,12 +130,9 @@ interface AppState {
   setGlobalCost: (k: "energyBill" | "carbonPrice" | "disrCost" | "unitsPerCycle", v: number) => void;
   saveCosts: () => void;
   costsNext: () => void;
-  loadDemoRT: () => void;
   loadRT: (rt: RTFile) => void;
   applyRtMap: (assign: number[]) => void;
-  loadDemoMix: () => void;
   loadMix: (mix: MixFile) => void;
-  loadDemoPrice: () => void;
   loadPrice: (price: PriceFile) => void;
   setClock: (ms: number) => void;
   setCampaign: (s: string) => void;
@@ -458,7 +450,6 @@ export const useRtlca = create<AppState>((set, get) => ({
     });
   },
 
-  loadDemoRT: () => get().loadRT(makeDemoRT()),
   loadRT: (rt) => {
     const s = get();
     const rtIdx = s.inputs.map((f, i) => (f.dataType === "real-time" ? i : -1)).filter((i) => i >= 0);
@@ -526,7 +517,6 @@ export const useRtlca = create<AppState>((set, get) => ({
     });
   },
 
-  loadDemoMix: () => get().loadMix(makeDemoMix()),
   loadMix: (mix) => {
     const s = get();
     if (!s.db) {
@@ -550,7 +540,6 @@ export const useRtlca = create<AppState>((set, get) => ({
       set({ alert: { title: "Grid mix reading error", message: e instanceof Error ? e.message : String(e), kind: "error" } });
     }
   },
-  loadDemoPrice: () => get().loadPrice(makeDemoPrices()),
   loadPrice: (price) => {
     const clockTime = get().clockTime ?? defaultClock(get().mix?.T, price.T);
     set({
