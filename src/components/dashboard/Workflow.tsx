@@ -367,11 +367,8 @@ function Step5() {
   const mix = useRtlca((s) => s.mix);
   const price = useRtlca((s) => s.price);
   const clockTime = useRtlca((s) => s.clockTime);
-  const loadDemoRT = useRtlca((s) => s.loadDemoRT);
   const loadRT = useRtlca((s) => s.loadRT);
-  const loadDemoMix = useRtlca((s) => s.loadDemoMix);
   const loadMix = useRtlca((s) => s.loadMix);
-  const loadDemoPrice = useRtlca((s) => s.loadDemoPrice);
   const loadPrice = useRtlca((s) => s.loadPrice);
   const setClock = useRtlca((s) => s.setClock);
   const confirm = useRtlca((s) => s.confirm);
@@ -384,18 +381,12 @@ function Step5() {
     <div className="space-y-3">
       <p className="text-xs font-semibold text-fg">A. Acquisition file</p>
       <div className="flex flex-wrap gap-2">
-        <Button variant="secondary" size="sm" onClick={loadDemoRT}>
-          Load demo RT
-        </Button>
-        <FileBtn label="Your RT" onBuf={(wb, name) => loadRT(parseRT(wb, name))} />
+        <FileBtn label="Upload RT file" onBuf={(wb, name) => loadRT(parseRT(wb, name))} />
       </div>
       <p className="text-[11px] italic text-muted">{rt ? `${rt.t.length} rows, ${rt.names.length} channels — ${rt.fileName}` : "no file loaded yet"}</p>
       <p className="text-xs font-semibold text-fg">B. Italian grid mix (Terna) and clock</p>
       <div className="flex flex-wrap gap-2">
-        <Button variant="secondary" size="sm" onClick={loadDemoMix}>
-          Load demo mix
-        </Button>
-        <FileBtn label="Your mix" onBuf={(wb, name) => loadMix(parseTerna(wb, name))} />
+        <FileBtn label="Upload grid mix" onBuf={(wb, name) => loadMix(parseTerna(wb, name))} />
       </div>
       <div className="grid grid-cols-2 gap-2">
         <Field label="Day">
@@ -429,10 +420,7 @@ function Step5() {
       <p className="text-xs font-semibold text-primary">{cfLbl}</p>
       <p className="text-xs font-semibold text-fg">C. Energy price (optional, 15 min)</p>
       <div className="flex flex-wrap gap-2">
-        <Button variant="secondary" size="sm" onClick={loadDemoPrice}>
-          Load demo price
-        </Button>
-        <FileBtn label="Your price" onBuf={(wb, name) => loadPrice(parsePrices(wb, name))} />
+        <FileBtn label="Upload price file" onBuf={(wb, name) => loadPrice(parsePrices(wb, name))} />
       </div>
       {price && <p className="text-[11px] italic text-muted">{price.zone}: {price.T.length} intervals</p>}
       <Button className="w-full" onClick={confirm}>
