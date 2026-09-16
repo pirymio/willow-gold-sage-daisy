@@ -91,29 +91,37 @@ function FileBtn({
 }
 
 function Step1() {
-  const loadDemo = useRtlca((s) => s.loadDemoDb);
   const loadDb = useRtlca((s) => s.loadDb);
-  const sample = useRtlca((s) => s.loadSampleCampaign);
   const loaded = useRtlca((s) => s.loaded);
   const db = useRtlca((s) => s.db);
+  const ref = useRef<HTMLInputElement>(null);
+  const setAlert = useRtlca((s) => s.setAlert);
   return (
     <div className="space-y-3">
       <p className="text-xs leading-relaxed text-muted">
-        Coefficient database (Idemat-style): processes × impact categories. A demo dataset is included so you can run the
-        full campaign without files.
+        Coefficient database (Idemat-style): processes × impact categories. Upload your own database file to begin the
+        campaign. This is the only database source — no demo data is provided.
       </p>
-      <Button className="w-full" onClick={sample}>
-        Open sample campaign
+      <input
+        ref={ref}
+        type="file"
+        accept=".xlsx,.xls,.csv"
+        className="hidden"
+        onChange={async (e) => {
+          const f = e.target.files?.[0];
+          e.target.value = "";
+          if (!f) return;
+          try {
+            const wb = await readFileAsWorkbook(f);
+            loadDb(parseDatabase(wb, f.name));
+          } catch (err) {
+            setAlert({ title: "File", message: err instanceof Error ? err.message : String(err), kind: "error" });
+          }
+        }}
+      />
+      <Button className="w-full" onClick={() => ref.current?.click()}>
+        Upload your database
       </Button>
-      <div className="flex gap-2">
-        <Button variant="secondary" className="flex-1" onClick={loadDemo}>
-          Load demo database
-        </Button>
-        <FileBtn
-          label="Your file"
-          onBuf={(wb, name) => loadDb(parseDatabase(wb, name))}
-        />
-      </div>
       {loaded && db && (
         <p className="text-xs text-muted">
           {db.fileName}: {db.procNames.length} processes, {db.colLabels.length} indicators.
